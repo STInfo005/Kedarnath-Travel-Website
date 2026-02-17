@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kedarnath Holiday Packages</title>
+
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/e3d34468a2.js" crossorigin="anonymous"></script>
+
+<style>
+/* Body */
+body {
+    font-family: 'Cursive', sans-serif;
+    background: linear-gradient(135deg, #3dbfef85, #e0f7fa);
+    margin: 0;
+}
+
+/* Navbar */
+.navbar {
+    background: #1cd2ee;
+    font-size: 0.95rem;
+    padding: 0.25rem 0.5rem;
+}
+.navbar-brand {
+    font-weight: bold;
+    color: white !important;
+    display: flex;
+    align-items: center;
+}
+.navbar-nav .nav-link {
+    color: white !important;
+    margin-left: 8px;
+    padding: 0.25rem 0.5rem;
+    font-weight: 500;
+}
+.navbar-nav .nav-link:hover {
+    color: #ffe600 !important;
+}
+.logo-img {
+    width: 110px;
+    height: auto;
+    object-fit: contain;
+    margin-right: 12px;
+}
+@media (max-width: 992px) { .logo-img { width: 90px; } }
+@media (max-width: 768px) { .logo-img { width: 70px; } }
+@media (max-width: 480px) { .logo-img { width: 60px; } }
+
+/* Animated Header */
+.animated-header {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e41561;
+    animation: slideText 3s ease-in-out infinite alternate;
+    margin: 15px 0;
+}
+@keyframes slideText {
+    0% { transform: translateX(-20px); }
+    50% { transform: translateX(20px); }
+    100% { transform: translateX(-20px); }
+}
+
+/* Article Styling */
+article {
+    padding: 15px;
+    background-color: rgba(30, 223, 230, 0.3);
+    border-left: 5px solid #2126c5;
+    border-radius: 10px;
+    color: #d91b4a;
+    margin-bottom: 15px;
+}
+
+/* Package Cards */
+.package-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px;
+    background: url('https://images.unsplash.com/photo-1506973035872-a4b1b2bd0c5b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg') no-repeat center/cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 8px 12px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 8px;
+    height: 70px;
+}
+.package-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.35);
+    border-radius: 12px;
+}
+.package-card-content { z-index: 1; flex: 1; text-align: left; }
+.package-card-content h5 { margin: 0; font-size: 0.85rem; font-weight: bold; }
+.package-card-content p { margin: 2px 0 0; font-size: 0.75rem; }
+.package-card i {
+    position: relative;
+    font-size: 1.8rem;
+    color: #ffec00;
+    margin-left: 8px;
+    animation: floatIcon 2s ease-in-out infinite alternate;
+}
+@keyframes floatIcon { 0% { transform: translateY(0); } 100% { transform: translateY(-6px); } }
+.package-card:hover { transform: scale(1.02); box-shadow: 0 5px 12px rgba(0,0,0,0.3); }
+
+/* Table */
+.table tbody tr:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+table th, table td {
+    text-align: center;
+    padding: 10px 8px;
+}
+table {
+    background-color: rgba(255,255,255,0.95);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    background: #1cd2ee;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .animated-header { font-size: 1.5rem; margin: 10px 0; }
+}
+@media (max-width: 480px) {
+    .animated-header { font-size: 1.2rem; }
+    .package-card { flex-direction: column; height: auto; padding: 10px; }
+    .package-card i { margin-left: 0; margin-top: 5px; }
+    table th, table td { padding: 8px 4px; font-size: 0.85rem; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+      <img src="../kedarnath/Logo.png" alt="Logo" class="logo-img">
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">☰</button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="./home page.html">HOME</a></li>
+          <li class="nav-item"><a class="nav-link" href="./Gallary.html">GALLERY</a></li>
+          <li class="nav-item"><a class="nav-link" href="./packsges.html">PACKAGES</a></li>
+          <li class="nav-item"><a class="nav-link" href="./services.html">SERVICES</a></li>
+          <li class="nav-item"><a class="nav-link" href="./Login Page.html">LOGIN PAGE</a></li>
+        </ul>
+      </div>
+  </div>
+</nav>
+
+<div class="container">
+  <!-- First Row: Package Cards + Table -->
+  <div class="row align-items-start mb-2">
+      <!-- Package Cards Column -->
+      <div class="col-lg-2 col-md-12 mb-2 d-flex flex-column">
+          <div class="package-card">
+              <div class="package-card-content">
+                  <h5>Flight</h5>
+                  <p>Comfortable flights</p>
+              </div>
+              <i class="fa-solid fa-jet-fighter-up"></i>
+          </div>
+          <div class="package-card">
+              <div class="package-card-content">
+                  <h5>Accommodation</h5>
+                  <p>Safe & clean stay</p>
+              </div>
+              <i class="fa-solid fa-bed"></i>
+          </div>
+          <div class="package-card">
+              <div class="package-card-content">
+                  <h5>Hotel</h5>
+                  <p>Luxury & budget</p>
+              </div>
+              <i class="fa-solid fa-hotel"></i>
+          </div>
+      </div>
+
+      <!-- Table Column -->
+      <div class="col-lg-10 col-md-12 mb-2">
+          <div class="table-responsive p-2">
+              <table class="table table-bordered text-center mb-0">
+                  <thead class="table-dark">
+                      <tr>
+                          <th>Tour Packages</th>
+                          <th>Price (₹)</th>
+                          <th>Days</th>
+                          <th>Nights</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr><td>Rishikesh</td><td>3000</td><td>1</td><td>1</td></tr>
+                      <tr><td>Guptkash</td><td>1250</td><td>1</td><td>1</td></tr>
+                      <tr><td>Kedarnath</td><td>1400</td><td>1</td><td>1</td></tr>
+                      <tr><td>Guptkash</td><td>1250</td><td>1</td><td>1</td></tr>
+                      <tr><td>Rishikesh</td><td>1300</td><td>1</td><td>1</td></tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+
+  <!-- Second Row: Article Full Width -->
+  <div class="row mb-2">
+      <div class="col-12">
+          <article>
+              <h3>About the Destination</h3>
+              <p>
+                  Kedarnath is a divine Hindu pilgrimage destination where thousands of tourists and pilgrims come every year to seek the blessings of Lord Shiva.
+                  It is famous for the Kedarnath shrine, one of the 12 Jyotirlingas of Lord Shiva, set against the majestic Kedarnath range.
+              </p>
+              <p>
+                  Trek is serene with rhododendron forests along the Himalayan paths. Summer is pleasant; winter is harsh.
+              </p>
+              <h5>Quick Info:</h5>
+              <p>
+                  <b>Route:</b> Rishikesh - Guptkashi - Kedarnath - Guptkashi - Rishikesh<br>
+                  <b>Duration:</b> 5 Days, 5 Nights<br>
+                  <b>Start Point:</b> Rishikesh<br>
+                  <b>End Point:</b> Rishikesh
+              </p>
+          </article>
+      </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>© 2026 My Dream Kedarnath Tour | All Rights Reserved</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

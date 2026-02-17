@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .signup-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        h2 { color: #333; font-size: 26px; margin-bottom: 5px; }
+        .subtitle { color: #777; font-size: 14px; margin-bottom: 25px; }
+
+        .input-group { text-align: left; margin-bottom: 18px; }
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i.main-icon {
+            position: absolute;
+            left: 15px;
+            color: #aaa;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 2px solid #edf2f7;
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .input-wrapper input:focus { 
+            border-color: #764ba2; 
+            box-shadow: 0 0 8px rgba(118, 75, 162, 0.1); 
+        }
+
+        /* Password Strength Bar */
+        .strength-meter {
+            height: 4px;
+            width: 100%;
+            background: #edf2f7;
+            margin-top: 8px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: all 0.4s ease;
+        }
+
+        .terms {
+            font-size: 12px;
+            color: #666;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 14px;
+            background: #764ba2;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .signup-btn:hover { background: #5e3a8a; transform: translateY(-1px); }
+        .signup-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+        .login-link { margin-top: 20px; font-size: 14px; color: #777; }
+        .login-link a { color: #667eea; text-decoration: none; font-weight: 700; }
+    </style>
+</head>
+<body>
+
+    <div class="signup-card">
+        <h2>Create Account</h2>
+        <p class="subtitle">Join us today! It only takes a minute.</p>
+
+        <form id="signupForm">
+            <div class="input-group">
+                <label for="fullname">Full Name</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-user main-icon"></i>
+                    <input type="text" id="fullname" placeholder="John Doe" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-envelope main-icon"></i>
+                    <input type="email" id="email" placeholder="john@example.com" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-lock main-icon"></i>
+                    <input type="password" id="password" placeholder="Min. 8 characters" required>
+                </div>
+                <div class="strength-meter">
+                    <div id="strengthBar" class="strength-bar"></div>
+                </div>
+            </div>
+
+            <div class="terms">
+                <input type="checkbox" id="agree" required>
+                <label for="agree">I agree to the <b>Terms of Service</b> and <b>Privacy Policy</b>.</label>
+            </div>
+
+            <button type="submit" class="signup-btn" id="submitBtn">Create Account</button>
+        </form>
+
+        <p class="login-link">Already have an account? <a href="./Login Page.html">Login here</a></p>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const strengthBar = document.getElementById('strengthBar');
+
+        // Simple Password Strength Logic
+        passwordInput.addEventListener('input', () => {
+            const val = passwordInput.value;
+            let width = 0;
+            let color = "";
+
+            if (val.length > 0) width = 25;
+            if (val.length > 5) width = 50;
+            if (val.length > 8) width = 100;
+
+            if (width === 25) color = "#ff4d4d"; // Red
+            if (width === 50) color = "#ffd54f"; // Yellow
+            if (width === 100) color = "#4caf50"; // Green
+
+            strengthBar.style.width = width + "%";
+            strengthBar.style.backgroundColor = color;
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("Account created successfully! Welcome to the team.");
+        });
+    </script>
+</body>
+</html>

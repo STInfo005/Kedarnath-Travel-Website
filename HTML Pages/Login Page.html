@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h2 { color: #333; font-size: 28px; margin-bottom: 8px; }
+        .subtitle { color: #777; font-size: 14px; margin-bottom: 30px; }
+
+        .input-group { text-align: left; margin-bottom: 20px; }
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i.main-icon {
+            position: absolute;
+            left: 15px;
+            color: #aaa;
+        }
+
+        /* Password Toggle Icon */
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .toggle-password:hover { color: #667eea; }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 12px 40px 12px 45px;
+            border: 2px solid #edf2f7;
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .input-wrapper input:focus { border-color: #667eea; box-shadow: 0 0 8px rgba(102, 126, 234, 0.2); }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .login-btn:hover { background-color: #5a6fd6; transform: translateY(-1px); }
+        .login-btn:disabled { background-color: #aab7f0; cursor: not-allowed; }
+
+        /* Spinner for loading state */
+        .spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ffffff;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .signup-text { margin-top: 25px; font-size: 14px; color: #777; }
+        .signup-text a { color: #764ba2; text-decoration: none; font-weight: 700; }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2>Welcome Back</h2>
+        <p class="subtitle">Please enter your details to login</p>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-envelope main-icon"></i>
+                    <input type="email" id="email" placeholder="name@company.com" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-lock main-icon"></i>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                    <i class="fa-solid fa-eye toggle-password" id="eyeIcon"></i>
+                </div>
+            </div>
+
+            <div class="form-options">
+                <label style="cursor: pointer; color: #666;">
+                    <input type="checkbox"> Remember me
+                </label>
+                <a href="#" style="color: #667eea; text-decoration: none; font-weight: 600;">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="login-btn" id="submitBtn">
+                <span class="spinner" id="btnSpinner"></span>
+                <span id="btnText">Login</span>
+            </button>
+        </form>
+
+        <p class="signup-text">Don't have an account? <a href="./SignUp.html">Sign up for free</a></p>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnSpinner = document.getElementById('btnSpinner');
+        const btnText = document.getElementById('btnText');
+
+        // 1. Toggle Password Visibility
+        eyeIcon.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // Toggle eye icon class
+            eyeIcon.classList.toggle('fa-eye');
+            eyeIcon.classList.toggle('fa-eye-slash');
+        });
+
+        // 2. Handle Form Submission
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Stop page refresh
+
+            // Show loading state
+            submitBtn.disabled = true;
+            btnSpinner.style.display = 'block';
+            btnText.innerText = 'Authenticating...';
+
+            // Simulate an API Call
+            setTimeout(() => {
+                const email = document.getElementById('email').value;
+                
+                alert(`Login successful for: ${email}\n(This is where you'd redirect the user!)`);
+                
+                // Reset state
+                submitBtn.disabled = false;
+                btnSpinner.style.display = 'none';
+                btnText.innerText = 'Login';
+            }, 2000);
+        });
+    </script>
+    
+</body>
+</html>
